@@ -24,11 +24,13 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
     //var currencyDict : [String : Float] = [:]
     
     
+    
     //MARK: -Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        //tableViewOutlet.tableFooterView = UIView()
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
         tableViewOutlet.rowHeight = 64
@@ -43,7 +45,7 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customCell = tableView.dequeueReusableCell(withIdentifier: "currencySelectionCell", for: indexPath) as! CurrencySelectionTableViewCell
         
-        customCell.confirmButtonOutlet.isHidden = true
+        
         customCell.currencyNameLabel.text = Singleton.shared.fullNamesOfValutes[indexPath.row]
         customCell.initialsLabel.text = Singleton.shared.shortNamesOfValutes[indexPath.row]
 
@@ -52,8 +54,10 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let customCell = tableView.dequeueReusableCell(withIdentifier: "currencySelectionCell", for: indexPath) as! CurrencySelectionTableViewCell
-
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? CurrencySelectionTableViewCell else { return }
+        cell.confirmButtonOutlet.isHidden = false
+        print(indexPath)
         Singleton.shared.charrCode = Singleton.shared.shortNamesOfValutes[indexPath.row]
         
         //print(Singleton.shared.charrCode)
@@ -62,8 +66,12 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let customCell = tableView.dequeueReusableCell(withIdentifier: "currencySelectionCell", for: indexPath) as! CurrencySelectionTableViewCell
-
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? CurrencySelectionTableViewCell else { return }
+        cell.confirmButtonOutlet.isHidden = true
     }
+ 
+    
 
 }
