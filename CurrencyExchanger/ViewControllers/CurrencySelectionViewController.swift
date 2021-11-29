@@ -9,12 +9,22 @@ import UIKit
 
 class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    //MARK: -Outlets
     @IBOutlet weak var tableViewOutlet: UITableView!
+   
     
-    //MARK: Values
-    var currencyDict : [String : Float] = [:]
+    //MARK: -Actions
+    @IBAction func confirmButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+        print(Singleton.shared.charrCode)
+    }
     
-    //MARK: Functions
+    //MARK: -Values
+    //var currencyDict : [String : Float] = [:]
+    
+    
+    //MARK: -Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +32,7 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
         tableViewOutlet.rowHeight = 64
-
+        
     }
 
     //MARK: -Cell customization
@@ -33,20 +43,27 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customCell = tableView.dequeueReusableCell(withIdentifier: "currencySelectionCell", for: indexPath) as! CurrencySelectionTableViewCell
         
+        customCell.confirmButtonOutlet.isHidden = true
         customCell.currencyNameLabel.text = Singleton.shared.fullNamesOfValutes[indexPath.row]
         customCell.initialsLabel.text = Singleton.shared.shortNamesOfValutes[indexPath.row]
-        
+
         return customCell
     
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let customCell = tableView.dequeueReusableCell(withIdentifier: "currencySelectionCell", for: indexPath) as! CurrencySelectionTableViewCell
 
         Singleton.shared.charrCode = Singleton.shared.shortNamesOfValutes[indexPath.row]
-        print(Singleton.shared.charrCode)
-
+        
+        //print(Singleton.shared.charrCode)
+        //print(Singleton.shared.tempValuteLeft)
+        
     }
     
-    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let customCell = tableView.dequeueReusableCell(withIdentifier: "currencySelectionCell", for: indexPath) as! CurrencySelectionTableViewCell
+
+    }
 
 }

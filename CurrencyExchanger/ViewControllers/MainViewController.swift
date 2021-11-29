@@ -9,11 +9,11 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    //MARK: Values
+    //MARK: -Values
 
     var singleShared = Singleton.shared
-    
-    //MARK: Outlets
+
+    //MARK: -Outlets
 
     @IBOutlet weak var leftCurrencyID: UILabel!
     @IBOutlet weak var leftCurrencyValue: UITextField!
@@ -21,12 +21,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var rightCurrencyValue: UITextField!
     @IBOutlet weak var mainViewOutlet: UIView!
     
-    //MARK: Actions
+    //MARK: -Actions
     @IBAction func leftCurrencyActionIDButton(_ sender: Any) {
         let theText = leftCurrencyValue.text ?? ""
         let float = Float(theText) ?? 0.0
         singleShared.observerFloatLeft = float
-        rightCurrencyValue.text = String(singleShared.observerFloatLeft)
+        rightCurrencyValue.text = String(singleShared.observerFloatLeft) // observerFloatLeft
         
     }
 
@@ -37,16 +37,36 @@ class MainViewController: UIViewController {
         leftCurrencyValue.text = String(singleShared.observerFloatRight)
     }
     
-    //MARK: Functions
+    @IBAction func leftChangeValueButton() {
+        //Segue to CurrencySelectionViewController
+        let vc = storyboard?.instantiateViewController(identifier: "CurrencySelectionVC") as! CurrencySelectionViewController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
+    @IBAction func rightChangeValueButton() {
+        //Segue to CurrencySelectionViewController
+        let vc = storyboard?.instantiateViewController(identifier: "CurrencySelectionVC") as! CurrencySelectionViewController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
+    //MARK: -Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
-        self.leftCurrencyValue.keyboardType = UIKeyboardType.numberPad
-        self.rightCurrencyValue.keyboardType = UIKeyboardType.numberPad
-       
+        //self.leftCurrencyValue.keyboardType = UIKeyboardType.numberPad
+        //self.rightCurrencyValue.keyboardType = UIKeyboardType.numberPad
         fetchJSON()
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        leftCurrencyID.text = singleShared.charrCode
+        
+        print(singleShared.tempValuteLeft)
     }
     
     func fetchJSON() {
@@ -62,16 +82,15 @@ class MainViewController: UIViewController {
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode(Main.self, from: data)
 
-                    //Fill dictionary with values
+                //Fill dictionary with values
                 self.singleShared.currencyParsedDictionary = jsonData.rates
-                self.singleShared.tempValuteLeft = jsonData.rates["EUR"] ?? 0.00
-                self.singleShared.tempValuteRight = jsonData.rates["USD"] ?? 0.00
+                self.singleShared.currencyParsedDictionary["RUB"] = Float(1.00)
+                self.singleShared.tempValuteRight = self.singleShared.currencyParsedDictionary["EUR"] ?? 0.00
             } catch {
                 print(error)
             }
         }.resume()
-
-
     }
+    
 }
 

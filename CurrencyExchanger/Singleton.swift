@@ -7,32 +7,34 @@
 
 import Foundation
 
-//Mark: Singleton
+//Mark: -Singleton
 
 class Singleton {
     static let shared = Singleton()
     
-    var charrCode = "PLN"
-    var tempValuteLeft : Float = 1.00 
-    var tempValuteRight : Float = 0.00
+    var charrCode = "RUB"
+    var tempValuteLeft : Float = 1.00
+    var tempValuteRight : Float = 1.00
     
-    var observerFloatLeft : Float = 0.00  { //RUB
+    var observerFloatLeft : Float = 0.00  {
         didSet {
-            observerFloatLeft = observerFloatLeft * tempValuteLeft / tempValuteRight
+            tempValuteLeft = currencyParsedDictionary[charrCode] ?? 0.00
+            observerFloatLeft = observerFloatLeft * tempValuteRight / tempValuteLeft
             
     }
 }
     
-    var observerFloatRight: Float = 0.00 { //EUR
+    var observerFloatRight: Float = 0.00 { 
         didSet {
-            observerFloatRight = observerFloatRight * tempValuteRight / tempValuteLeft
+            tempValuteRight = currencyParsedDictionary["EUR"] ?? 0.00
+            observerFloatRight = observerFloatRight * tempValuteLeft / tempValuteRight
         }
     }
     
     var currencyParsedDictionary : [String : Float] = [:]
     
-    let shortNamesOfValutes = ["AUD", "AZN", "AMD", "BYN", "BGN", "BRL", "HUF", "KRW", "HKD", "DKK", "USD", "EUR", "INR", "KZT", "CAD", "KGS", "CNY", "MDL", "TMT", "NOK", "PLN", "RON", "XDR", "SGD", "TJS", "TRY", "UZS", "UAH", "GBP", "CZK", "SEK", "CHF","ZAR","JPY"]
+    var shortNamesOfValutes = ["AUD", "AZN", "AMD", "BYN", "BGN", "BRL", "HUF", "KRW", "HKD", "DKK", "USD", "EUR", "INR", "KZT", "CAD", "KGS", "CNY", "MDL", "TMT", "NOK", "PLN","RUB", "RON", "XDR", "SGD", "TJS", "TRY", "UZS", "UAH", "GBP", "CZK", "SEK", "CHF","ZAR","JPY"]
 
-    let fullNamesOfValutes = ["Австралийский доллар", "Азербайджанский манат", "Армянских драмов", "Белорусский рубль", "Болгарский лев", "Бразильский реал", "Венгерских форинтов", "Вон Республики Корея", "Гонконгских долларов", "Датская крона", "Доллар США", "Евро", "Индийских рупий", "Казахстанских тенге", "Канадский доллар", "Киргизских сомов", "Китайский юань", "Молдавских леев", "Новый туркменский манат", "Норвежских крон", "Польский злотый", "Румынский лей", "СДР (специальные права заимствования)", "Сингапурский доллар", "Таджикских сомони", "Турецких лир", "Узбекских сумов", "Украинских гривен", "Фунт стерлингов Соединенного королевства", "Чешских крон", "Шведских крон", "Швейцарский франк", "Южноафриканских рэндов", "Японских иен"]
+    var fullNamesOfValutes = ["Австралийский доллар", "Азербайджанский манат", "Армянских драмов", "Белорусский рубль", "Болгарский лев", "Бразильский реал", "Венгерских форинтов", "Вон Республики Корея", "Гонконгских долларов", "Датская крона", "Доллар США", "Евро", "Индийских рупий", "Казахстанских тенге", "Канадский доллар", "Киргизских сомов", "Китайский юань", "Молдавских леев", "Новый туркменский манат", "Норвежских крон", "Польский злотый","Российский рубль", "Румынский лей", "СДР (специальные права заимствования)", "Сингапурский доллар", "Таджикских сомони", "Турецких лир", "Узбекских сумов", "Украинских гривен", "Фунт стерлингов Соединенного королевства", "Чешских крон", "Шведских крон", "Швейцарский франк", "Южноафриканских рэндов", "Японских иен"]
 
 }

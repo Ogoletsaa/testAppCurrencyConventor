@@ -7,7 +7,7 @@
 
 import Foundation
 
-//MARK: Properties
+//MARK: -Properties
 struct Main: Codable {
     let disclaimer : String
     let date : String
@@ -15,7 +15,6 @@ struct Main: Codable {
     let base : String
     let rates : Dictionary <String, Float>
 }
-
 
 //I Failed parsing here :<
 

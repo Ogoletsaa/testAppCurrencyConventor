@@ -11,6 +11,8 @@ class CurrencySelectionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var currencyNameLabel: UILabel!
     @IBOutlet weak var initialsLabel: UILabel!
+    @IBOutlet weak var confirmButtonOutlet: UIButton!
+    @IBOutlet weak var currencySelectionCellOutlet: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
