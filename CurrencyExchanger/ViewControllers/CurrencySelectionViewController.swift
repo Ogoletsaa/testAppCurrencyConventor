@@ -8,20 +8,15 @@
 import UIKit
 
 class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
     
     //MARK: -Outlets
     @IBOutlet weak var tableViewOutlet: UITableView!
-   
-    
+       
     //MARK: -Actions
     @IBAction func confirmButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
-    //MARK: -Values
-    
-    
+        
     //MARK: -Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +37,6 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customCell = tableView.dequeueReusableCell(withIdentifier: "currencySelectionCell", for: indexPath) as! CurrencySelectionTableViewCell
         
-        
         customCell.currencyNameLabel.text = Singleton.shared.fullNamesOfValutes[indexPath.row]
         customCell.initialsLabel.text = Singleton.shared.shortNamesOfValutes[indexPath.row]
 
@@ -55,8 +49,6 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
         guard let cell = tableView.cellForRow(at: indexPath) as? CurrencySelectionTableViewCell else { return }
         cell.confirmButtonOutlet.isHidden = false
         Singleton.shared.charrCode = Singleton.shared.shortNamesOfValutes[indexPath.row]
-        
-        print("Charr is: \(Singleton.shared.charrCode)")
         
     }
     

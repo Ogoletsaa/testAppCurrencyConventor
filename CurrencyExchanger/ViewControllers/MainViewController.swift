@@ -57,14 +57,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //self.leftCurrencyValue.keyboardType = UIKeyboardType.numberPad
-        //self.rightCurrencyValue.keyboardType = UIKeyboardType.numberPad
+        self.leftCurrencyValue.keyboardType = UIKeyboardType.numberPad
+        self.rightCurrencyValue.keyboardType = UIKeyboardType.numberPad
         fetchJSON()
         singleShared.calcValuteLeft = singleShared.currencyParsedDictionary["RUB"] ?? 0.00
         singleShared.calcValuteRight = singleShared.currencyParsedDictionary["EUR"] ?? 0.00
-        
-        print(singleShared.calcValuteLeft)
-        print(singleShared.calcValuteRight)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,17 +91,15 @@ class MainViewController: UIViewController {
             }
         }.resume()
     }
-    
-    
+        
     func switchCharrs(){
         
         if singleShared.switcherForCharrs == true {
             singleShared.leftCharrCode = singleShared.charrCode
-            print("LeftChar is: \(singleShared.leftCharrCode)")
             leftCurrencyID.text = singleShared.leftCharrCode
+            
         } else {
             singleShared.rightCharrCode = singleShared.charrCode
-            print("RightChar is: \(singleShared.rightCharrCode)")
             rightCurrencyID.text = singleShared.rightCharrCode
         }
                         
