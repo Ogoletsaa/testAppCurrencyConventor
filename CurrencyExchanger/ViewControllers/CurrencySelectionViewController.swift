@@ -17,12 +17,9 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
     //MARK: -Actions
     @IBAction func confirmButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-        print(Singleton.shared.charrCode)
     }
     
     //MARK: -Values
-    //var currencyDict : [String : Float] = [:]
-    
     
     
     //MARK: -Functions
@@ -57,11 +54,9 @@ class CurrencySelectionViewController: UIViewController, UITableViewDelegate, UI
         
         guard let cell = tableView.cellForRow(at: indexPath) as? CurrencySelectionTableViewCell else { return }
         cell.confirmButtonOutlet.isHidden = false
-        print(indexPath)
         Singleton.shared.charrCode = Singleton.shared.shortNamesOfValutes[indexPath.row]
         
-        //print(Singleton.shared.charrCode)
-        //print(Singleton.shared.tempValuteLeft)
+        print("Charr is: \(Singleton.shared.charrCode)")
         
     }
     

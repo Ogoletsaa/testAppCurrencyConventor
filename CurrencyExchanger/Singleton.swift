@@ -13,6 +13,10 @@ class Singleton {
     static let shared = Singleton()
     
     var charrCode = "RUB"
+    var leftCharrCode = ""
+    var rightCharrCode = ""
+    var switcherForCharrs = true
+    
     var tempValuteLeft : Float = 1.00
     var tempValuteRight : Float = 1.00
     

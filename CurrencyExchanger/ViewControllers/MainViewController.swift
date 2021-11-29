@@ -10,7 +10,6 @@ import UIKit
 class MainViewController: UIViewController {
     
     //MARK: -Values
-
     var singleShared = Singleton.shared
 
     //MARK: -Outlets
@@ -42,6 +41,7 @@ class MainViewController: UIViewController {
         let vc = storyboard?.instantiateViewController(identifier: "CurrencySelectionVC") as! CurrencySelectionViewController
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+        singleShared.switcherForCharrs = true
     }
     
     @IBAction func rightChangeValueButton() {
@@ -49,6 +49,8 @@ class MainViewController: UIViewController {
         let vc = storyboard?.instantiateViewController(identifier: "CurrencySelectionVC") as! CurrencySelectionViewController
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+        singleShared.switcherForCharrs = false
+        
     }
     
     //MARK: -Functions
@@ -64,9 +66,7 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        leftCurrencyID.text = singleShared.charrCode
-        
-        print(singleShared.tempValuteLeft)
+        switchCharrs()
     }
     
     func fetchJSON() {
@@ -92,5 +92,17 @@ class MainViewController: UIViewController {
         }.resume()
     }
     
+    func switchCharrs(){
+        leftCurrencyID.text = singleShared.charrCode
+        
+        if singleShared.switcherForCharrs == true {
+            singleShared.leftCharrCode = singleShared.charrCode
+            print("LeftChar is: \(singleShared.leftCharrCode)")
+        } else {
+            singleShared.rightCharrCode = singleShared.charrCode
+            print("RightChar is: \(singleShared.rightCharrCode)")
+        }
+                        
+    }
 }
 
