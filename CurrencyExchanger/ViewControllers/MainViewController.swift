@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
         let theText = leftCurrencyValue.text ?? ""
         let float = Float(theText) ?? 0.0
         singleShared.observerFloatLeft = float
-        rightCurrencyValue.text = String(singleShared.observerFloatLeft) // observerFloatLeft
+        rightCurrencyValue.text = String(singleShared.observerFloatLeft)
         
     }
 
@@ -60,8 +60,11 @@ class MainViewController: UIViewController {
         //self.leftCurrencyValue.keyboardType = UIKeyboardType.numberPad
         //self.rightCurrencyValue.keyboardType = UIKeyboardType.numberPad
         fetchJSON()
+        singleShared.calcValuteLeft = singleShared.currencyParsedDictionary["RUB"] ?? 0.00
+        singleShared.calcValuteRight = singleShared.currencyParsedDictionary["EUR"] ?? 0.00
         
-        
+        print(singleShared.calcValuteLeft)
+        print(singleShared.calcValuteRight)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,22 +88,24 @@ class MainViewController: UIViewController {
                 //Fill dictionary with values
                 self.singleShared.currencyParsedDictionary = jsonData.rates
                 self.singleShared.currencyParsedDictionary["RUB"] = Float(1.00)
-                self.singleShared.tempValuteRight = self.singleShared.currencyParsedDictionary["EUR"] ?? 0.00
+                self.singleShared.calcValuteRight = self.singleShared.currencyParsedDictionary["EUR"] ?? 0.00
             } catch {
                 print(error)
             }
         }.resume()
     }
     
+    
     func switchCharrs(){
-        leftCurrencyID.text = singleShared.charrCode
         
         if singleShared.switcherForCharrs == true {
             singleShared.leftCharrCode = singleShared.charrCode
             print("LeftChar is: \(singleShared.leftCharrCode)")
+            leftCurrencyID.text = singleShared.leftCharrCode
         } else {
             singleShared.rightCharrCode = singleShared.charrCode
             print("RightChar is: \(singleShared.rightCharrCode)")
+            rightCurrencyID.text = singleShared.rightCharrCode
         }
                         
     }

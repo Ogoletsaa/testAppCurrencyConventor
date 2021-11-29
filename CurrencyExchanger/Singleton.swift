@@ -14,24 +14,23 @@ class Singleton {
     
     var charrCode = "RUB"
     var leftCharrCode = ""
-    var rightCharrCode = ""
+    var rightCharrCode = "EUR"
     var switcherForCharrs = true
     
-    var tempValuteLeft : Float = 1.00
-    var tempValuteRight : Float = 1.00
+    var calcValuteLeft : Float = 0.00
+    var calcValuteRight : Float = 1.00
     
     var observerFloatLeft : Float = 0.00  {
         didSet {
-            tempValuteLeft = currencyParsedDictionary[charrCode] ?? 0.00
-            observerFloatLeft = observerFloatLeft * tempValuteRight / tempValuteLeft
-            
+            calcValuteLeft = currencyParsedDictionary[leftCharrCode] ?? 0.00
+            observerFloatLeft = observerFloatLeft * calcValuteRight / calcValuteLeft
     }
 }
     
     var observerFloatRight: Float = 0.00 { 
         didSet {
-            tempValuteRight = currencyParsedDictionary["EUR"] ?? 0.00
-            observerFloatRight = observerFloatRight * tempValuteLeft / tempValuteRight
+            calcValuteRight = currencyParsedDictionary[rightCharrCode] ?? 0.00
+            observerFloatRight = observerFloatRight * calcValuteLeft / calcValuteRight
         }
     }
     

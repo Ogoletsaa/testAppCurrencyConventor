@@ -25,6 +25,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="leftCurrencyActionIDButton:" destination="BYZ-38-t0r" eventType="valueChanged" id="Y69-OI-wS5"/>
                                     <action selector="leftCurrencyActionIDButton:" destination="BYZ-38-t0r" eventType="editingChanged" id="oZA-5L-WvU"/>
                                 </connections>
                             </textField>
@@ -36,6 +37,8 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="rightCurrencyActionIDButton:" destination="BYZ-38-t0r" eventType="valueChanged" id="aNO-mi-N65"/>
+                                    <action selector="rightCurrencyActionIDButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b17-Xr-o0K"/>
                                     <action selector="rightCurrencyActionIDButton:" destination="BYZ-38-t0r" eventType="editingChanged" id="yt8-Sa-Qcx"/>
                                 </connections>
                             </textField>
