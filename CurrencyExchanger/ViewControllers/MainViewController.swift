@@ -10,7 +10,8 @@ import UIKit
 class MainViewController: UIViewController {
     
     //MARK: -Values
-    var singleShared = Singleton.shared
+    let singleShared = Singleton.shared
+    let networkService = NetworkService()
 
     //MARK: -Outlets
 
@@ -59,7 +60,7 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.leftCurrencyValue.keyboardType = UIKeyboardType.numberPad
         self.rightCurrencyValue.keyboardType = UIKeyboardType.numberPad
-        fetchJSON()
+        networkService.fetchJSON()
         singleShared.calcValuteLeft = singleShared.currencyParsedDictionary["RUB"] ?? 0.00
         singleShared.calcValuteRight = singleShared.currencyParsedDictionary["EUR"] ?? 0.00
     }
@@ -69,29 +70,6 @@ class MainViewController: UIViewController {
         switchCharrs()
     }
     
-    func fetchJSON() {
-        let urlStringJSON = "https://www.cbr-xml-daily.ru/latest.js"
-
-        guard let url = URL(string: urlStringJSON) else { return }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
-
-            //Decode data
-            do {
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(Main.self, from: data)
-
-                //Fill dictionary with values
-                self.singleShared.currencyParsedDictionary = jsonData.rates
-                self.singleShared.currencyParsedDictionary["RUB"] = Float(1.00)
-                self.singleShared.calcValuteRight = self.singleShared.currencyParsedDictionary["EUR"] ?? 0.00
-            } catch {
-                print(error)
-            }
-        }.resume()
-    }
-        
     func switchCharrs(){
         
         if singleShared.switcherForCharrs == true {

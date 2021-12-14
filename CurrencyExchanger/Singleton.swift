@@ -9,7 +9,7 @@ import Foundation
 
 //Mark: -Singleton
 
-class Singleton {
+final class Singleton {
     static let shared = Singleton()
     
     var charrCode = "RUB"

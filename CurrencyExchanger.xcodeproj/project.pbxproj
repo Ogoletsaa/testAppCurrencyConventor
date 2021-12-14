@@ -16,6 +16,7 @@
 		8F6D6FB12754274C00DDFC20 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D6FB02754274C00DDFC20 /* Singleton.swift */; };
 		8F6D6FB5275428D200DDFC20 /* CurrencySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D6FB4275428D200DDFC20 /* CurrencySelectionViewController.swift */; };
 		8F6D6FB72754298000DDFC20 /* CurrencySelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D6FB62754298000DDFC20 /* CurrencySelectionTableViewCell.swift */; };
+		8F7BA9512768A58100CD7A3E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7BA9502768A58100CD7A3E /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		8F6D6FB02754274C00DDFC20 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		8F6D6FB4275428D200DDFC20 /* CurrencySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionViewController.swift; sourceTree = "<group>"; };
 		8F6D6FB62754298000DDFC20 /* CurrencySelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionTableViewCell.swift; sourceTree = "<group>"; };
+		8F7BA9502768A58100CD7A3E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				8F6D6FAD2754270600DDFC20 /* Delegates */,
 				8F6D6FAE2754274400DDFC20 /* Model.swift */,
+				8F7BA9502768A58100CD7A3E /* Network.swift */,
 				8F6D6FB02754274C00DDFC20 /* Singleton.swift */,
 				8F03B48E27542F3C003C25D5 /* ViewControllers */,
 				8F6D6F9D2754220B00DDFC20 /* Main.storyboard */,
@@ -164,6 +167,7 @@
 			files = (
 				8F6D6F9C2754220B00DDFC20 /* MainViewController.swift in Sources */,
 				8F6D6F982754220B00DDFC20 /* AppDelegate.swift in Sources */,
+				8F7BA9512768A58100CD7A3E /* Network.swift in Sources */,
 				8F6D6FB5275428D200DDFC20 /* CurrencySelectionViewController.swift in Sources */,
 				8F6D6F9A2754220B00DDFC20 /* SceneDelegate.swift in Sources */,
 				8F6D6FB12754274C00DDFC20 /* Singleton.swift in Sources */,
